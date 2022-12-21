@@ -21,6 +21,7 @@ pub struct ServerConfig {
     pub port: u32,
     pub ip: String,
     pub webhook_path: String,
+    pub reload_config_on_deployment: bool,
 }
 
 #[derive(Serialize, Deserialize, Clone)]

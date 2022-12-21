@@ -14,7 +14,7 @@ pub(self) enum ExecutionError {
 
 impl Display for ExecutionError {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        f.write_str(&format!("{:?}", self))
+        f.write_str(&format!("{self:?}"))
     }
 }
 
@@ -37,7 +37,7 @@ pub(self) fn base_api<T>(endpoint: &str, payload: HashMap<&'static str, String>)
     }
 
     let value = command.output()?;
-    if value.stderr.len() != 0 {
+    if !value.stderr.is_empty() {
         return Err(ExecutionError::GitHubError(String::from_utf8_lossy(&value.stderr).to_string()).into())
     }
 

@@ -7,6 +7,7 @@ Tower config is in TOML format, a full example of the config follows:
 port = 80
 ip = "127.0.0.1"
 webhook_path = "/webhook/tower"
+reload_config_on_deployment = true # This is NOT able to change things like port or ip on the fly!
 
 [repository]
 ref = "refs/heads/main" # To prevent deployment of PRs and such

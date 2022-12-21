@@ -12,7 +12,7 @@ pub fn read_config<P: AsRef<Path>>(path: P) -> anyhow::Result<Config> {
 }
 
 pub fn parse_config(config: &str) -> anyhow::Result<Config> {
-    Ok(toml::from_str(&config)?)
+    Ok(toml::from_str(config)?)
 }
 
 impl Default for PullConfig {
@@ -27,7 +27,7 @@ impl Command {
     pub fn display(&self, context: &Config) -> &str {
         match context.deployment.descriptions.display {
             DescriptionDisplay::Id => &self.id,
-            DescriptionDisplay::DisplayName => &self.display_name.as_ref().unwrap_or_else(|| &self.id),
+            DescriptionDisplay::DisplayName => self.display_name.as_ref().unwrap_or(&self.id),
         }
     }
 
